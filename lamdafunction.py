@@ -1,9 +1,8 @@
 from __future__ import print_function
 
 import boto3
-from decimal import Decimal
 import json
-import urllib
+import urllib.parse
 
 print('Loading function')
 
@@ -15,57 +14,62 @@ rekognition = boto3.client('rekognition')
 # --------------- Helper Functions ------------------
 
 def index_faces(bucket, key):
-
     response = rekognition.index_faces(
-        Image={"S3Object":
-            {"Bucket": bucket,
-            "Name": key}},
-            CollectionId="famouspersons")
+        Image={
+            "S3Object": {
+                "Bucket": bucket,
+                "Name": key
+            }
+        },
+        CollectionId="face_collection_<YourInitials>"
+    )
     return response
-    
-def update_index(tableName,faceId, fullName):
+
+
+def update_index(tableName, faceId, fullName):
     response = dynamodb.put_item(
         TableName=tableName,
         Item={
             'RekognitionId': {'S': faceId},
             'FullName': {'S': fullName}
-            }
-        ) 
-    
-# --------------- Main handler ------------------
+        }
+    )
+    return response
+
+
+# --------------- Main Handler ------------------
 
 def lambda_handler(event, context):
-
-    # Get the object from the event
+    # Extract Bucket and Key from event
     bucket = event['Records'][0]['s3']['bucket']['name']
-    print("Records: ",event['Records'])
     key = event['Records'][0]['s3']['object']['key']
-    print("Key: ",key)
-    # key = key.encode()
-    # key = urllib.parse.unquote_plus(key)
+
+    # URL-decode the key (e.g. converts 'index%2Fimage1.jpg' to 'index/image1.jpg')
+    key = urllib.parse.unquote_plus(key)
+
+    print("Records:", event['Records'])
+    print("Processing Key:", key)
 
     try:
-
-        # Calls Amazon Rekognition IndexFaces API to detect faces in S3 object 
-        # to index faces into specified collection
-        
+        # Index faces in Rekognition
         response = index_faces(bucket, key)
-        
-        # Commit faceId and full name object metadata to DynamoDB
-        
-        if response['ResponseMetadata']['HTTPStatusCode'] == 200:
+
+        # Verify indexing succeeded and a face was found
+        if response['ResponseMetadata']['HTTPStatusCode'] == 200 and len(response['FaceRecords']) > 0:
             faceId = response['FaceRecords'][0]['Face']['FaceId']
 
-            ret = s3.head_object(Bucket=bucket,Key=key)
-            personFullName = ret['Metadata']['fullname']
+            # Get metadata from S3 object
+            ret = s3.head_object(Bucket=bucket, Key=key)
+            personFullName = ret['Metadata'].get('fullname') or ret['Metadata'].get('FullName') or 'Unknown'
 
-            update_index('face_recognition',faceId,personFullName)
+            # Store in DynamoDB
+            update_index('face_table_<YourInitials>', faceId, personFullName)
+            print("Successfully saved to DynamoDB:", faceId, "->", personFullName)
 
-        # Print response to console
         print(response)
-
         return response
+
     except Exception as e:
         print(e)
-        print("Error processing object {} from bucket {}. ".format(key, bucket))
+        print("Error processing object {} from bucket {}.".format(key, bucket))
         raise e

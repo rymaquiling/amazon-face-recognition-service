@@ -2,8 +2,8 @@ import boto3
 import io
 from PIL import Image
 
-rekognition = boto3.client('rekognition', region_name='us-east-1')
-dynamodb = boto3.client('dynamodb', region_name='us-east-1')
+rekognition = boto3.client('rekognition', region_name='ap-southeast-1')
+dynamodb = boto3.client('dynamodb', region_name='ap-southeast-1')
 
 image_path = input("Enter path of the image to check: ")
 
@@ -14,7 +14,7 @@ image_binary = stream.getvalue()
 
 
 response = rekognition.search_faces_by_image(
-        CollectionId='famouspersons',
+        CollectionId='face_collection_<YourInitials>',
         Image={'Bytes':image_binary}                                       
         )
 
@@ -23,7 +23,7 @@ for match in response['FaceMatches']:
     print (match['Face']['FaceId'],match['Face']['Confidence'])
         
     face = dynamodb.get_item(
-        TableName='face_recognition',  
+        TableName='face_table_<YourInitials>',  
         Key={'RekognitionId': {'S': match['Face']['FaceId']}}
         )
     

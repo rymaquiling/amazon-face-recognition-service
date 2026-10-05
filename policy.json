@@ -16,7 +16,8 @@
                 "s3:GetObject"
             ],
             "Resource": [
-                "arn:aws:s3:::bucket-name/*"
+                "arn:aws:s3:::face-bucket-rdcm",
+                "arn:aws:s3:::face-bucket-rdcm/*"
             ]
         },
         {
@@ -25,7 +26,7 @@
                 "dynamodb:PutItem"
             ],
             "Resource": [
-                "arn:aws:dynamodb:aws-region:account-id:table/family_collection"
+                "arn:aws:dynamodb:ap-southeast-1:015454941565:table/face_table_rdcm"
             ]
         },
         {
