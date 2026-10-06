@@ -6,6 +6,7 @@ rekognition = boto3.client('rekognition', region_name='ap-southeast-1')
 dynamodb = boto3.client('dynamodb', region_name='ap-southeast-1')
 
 image_path = input("Enter path of the image to check: ")
+print()
 
 image = Image.open(image_path)
 stream = io.BytesIO()
@@ -31,7 +32,7 @@ for match in response['FaceMatches']:
         person_name = face['Item']['FullName']['S']
         print(f"Faceprint: {face_id}")
         print(f"Confidence Level: {confidence}")
-        print(f"Found Person: {person_name}")
+        print(f"Found Person: {person_name}\n")
         found = True
 
 if not found:
