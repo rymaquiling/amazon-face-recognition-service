@@ -9,10 +9,8 @@ images=[('image1.jpg','Elon Musk'),
       ('image4.jpg','Bill Gates'),
       ('image5.jpg','Taylor Swift'),
       ('image6.jpg','Taylor Swift'),
-      ('mypic1.jpg','Ryan Maquiling'),
-      ('mypic2.jpg','Ryan Maquiling'),
-      ('<YourPic1.jpg>','<YourName>'), # OPTIONAL
-      ('<YourPic2.jpg>','<YourName>') # OPTIONAL
+      ('<YourPic1.jpg>','<YourName>'), # CHANGE
+      ('<YourPic2.jpg>','<YourName>') # CHANGE
       ]
 
 # Iterate through list to upload objects to S3   
