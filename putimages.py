@@ -9,6 +9,8 @@ images=[('image1.jpg','Elon Musk'),
       ('image4.jpg','Bill Gates'),
       ('image5.jpg','Taylor Swift'),
       ('image6.jpg','Taylor Swift'),
+      ('image7.jpg','Ryan Maquiling'),
+      ('image8.jpg','Ryan Maquiling'),
       ('<YourPic1.jpg>','<YourName>'), # CHANGE
       ('<YourPic2.jpg>','<YourName>') # CHANGE
       ]
