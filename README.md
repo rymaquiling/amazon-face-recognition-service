@@ -11,4 +11,4 @@ Or installing them one-by-one:\
 `python -m pip install boto3`\
 `python -m pip install opencv-python`\
 `python -m pip install opencv-python`\
-`python -m pip install pillow-heif`\
+`python -m pip install pillow-heif`
