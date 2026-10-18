@@ -21,7 +21,7 @@ def index_faces(bucket, key):
                 "Name": key
             }
         },
-        CollectionId="face_collection_<YourInitials>"
+        CollectionId="face-collection-<YourInitials>"
     )
     return response
 
@@ -63,7 +63,7 @@ def lambda_handler(event, context):
             personFullName = ret['Metadata'].get('fullname') or ret['Metadata'].get('FullName') or 'Unknown'
 
             # Store in DynamoDB
-            update_index('face_table_<YourInitials>', faceId, personFullName)
+            update_index('face-table-<YourInitials>', faceId, personFullName)
             print("Successfully saved to DynamoDB:", faceId, "->", personFullName)
 
         print(response)

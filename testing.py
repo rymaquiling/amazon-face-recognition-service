@@ -8,7 +8,7 @@ dynamodb = boto3.client('dynamodb', region_name='ap-southeast-1')
 def recognize(image_binary):
     try:
         response = rekognition.search_faces_by_image(
-            CollectionId='face_collection_<YourInitials>',
+            CollectionId='face-collection-<YourInitials>',
             Image={'Bytes': image_binary},
             FaceMatchThreshold=80
         )
@@ -21,7 +21,7 @@ def recognize(image_binary):
         similarity = match['Similarity']
 
         face = dynamodb.get_item(
-            TableName='face_table_<YourInitials>',
+            TableName='face-table-<YourInitials>',
             Key={'RekognitionId': {'S': face_id}}
         )
 
