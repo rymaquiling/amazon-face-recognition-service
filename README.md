@@ -107,16 +107,12 @@ If you prefer to install packages manually:
 
 * **Windows:**
   ```cmd
-  py -m pip install boto3
-  py -m pip install opencv-python
-  py -m pip install pillow-heif
+  py -m pip install boto3 opencv-python pillow-heif
   ```
 
 * **macOS / Linux:**
   ```bash
-  python3 -m pip install boto3
-  python3 -m pip install opencv-python
-  python3 -m pip install pillow-heif
+  python3 -m pip install boto3 opencv-python pillow-heif
   ```
 
 ---
