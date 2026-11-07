@@ -33,6 +33,7 @@ def read_as_jpeg(path):
 # Iterate through list to upload objects to S3
 for image in images:
     key = 'index/' + os.path.splitext(image[0])[0] + '.jpg'
+    # CHANGE
     object = s3.Object('face-bucket-<YourInitials>', key)
     ret = object.put(Body=read_as_jpeg(image[0]),
                     ContentType='image/jpeg',

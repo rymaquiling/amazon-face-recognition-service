@@ -60,7 +60,7 @@ Update `pip` to the latest version to prevent installation issues with wheel pac
 
 ---
 
-### Step 3: (Recommended) Create & Activate Virtual Environment
+### Step 3: Create & Activate Virtual Environment
 
 Isolate your project dependencies from your system-wide Python environment.
 
