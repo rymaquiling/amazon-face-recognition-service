@@ -44,23 +44,7 @@ Ensure `pip` is installed and tied to your system Python installation.
 
 ---
 
-### Step 2: Upgrade `pip`
-
-Update `pip` to the latest version to prevent installation issues with wheel packages.
-
-* **Windows:**
-  ```cmd
-  py -m pip install --upgrade pip
-  ```
-
-* **macOS / Linux:**
-  ```bash
-  python3 -m pip install --upgrade pip
-  ```
-
----
-
-### Step 3: Create & Activate Virtual Environment
+### Step 2: Create & Activate Virtual Environment
 
 Isolate your project dependencies from your system-wide Python environment.
 
@@ -80,44 +64,41 @@ source venv/bin/activate
 
 ---
 
+### Step 3: Upgrade `pip`
+
+With the virtual environment **activated**, update its `pip` to the latest version to prevent installation issues with wheel packages (such as `opencv-python`).
+
+* **All OS (virtual environment active):**
+  ```bash
+  python -m pip install --upgrade pip
+  ```
+
+* **Verify the version:**
+  ```bash
+  pip --version
+  ```
+
+---
+
 ### Step 4: Install Required Packages
 
 #### Option A: Install via `requirements.txt` (Recommended)
 
-* **Windows:**
-  ```cmd
-  py -m pip install -r requirements.txt
-  ```
-
-* **macOS / Linux:**
-  ```bash
-  python3 -m pip install -r requirements.txt
-  ```
-
-* **If inside an active virtual environment (All OS):**
-  ```bash
-  pip install -r requirements.txt
-  ```
+With the virtual environment active (All OS):
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
 #### Option B: Install Packages Individually
 
-If you prefer to install packages manually:
-
-* **Windows:**
-  ```cmd
-  py -m pip install boto3
-  py -m pip install opencv-python
-  py -m pip install pillow-heif
-  ```
-
-* **macOS / Linux:**
-  ```bash
-  python3 -m pip install boto3
-  python3 -m pip install opencv-python
-  python3 -m pip install pillow-heif
-  ```
+If you prefer to install packages manually, with the virtual environment active (All OS):
+```bash
+pip install boto3
+pip install opencv-python
+pip install pillow-heif
+```
 
 ---
 
