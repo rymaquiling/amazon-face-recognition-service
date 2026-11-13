@@ -23,7 +23,6 @@ MAX_CAMERAS = 5  # how many camera slots to check
 def recognize(image_binary):
     try:
         response = rekognition.search_faces_by_image(
-            # CHANGE
             CollectionId='face-collection-<YourInitials>',
             Image={'Bytes': image_binary},
             FaceMatchThreshold=80
@@ -37,7 +36,6 @@ def recognize(image_binary):
         similarity = match['Similarity']
 
         face = dynamodb.get_item(
-            # CHANGE
             TableName='face-table-<YourInitials>',
             Key={'RekognitionId': {'S': face_id}}
         )
