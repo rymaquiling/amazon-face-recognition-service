@@ -51,7 +51,6 @@ Isolate your project dependencies from your system-wide Python environment.
 #### Windows (Command Prompt / PowerShell):
 ```cmd
 py -m venv venv
-venv\Scripts\activate
 ```
 ```cmd
 venv\Scripts\activate
