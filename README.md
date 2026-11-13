@@ -53,10 +53,14 @@ Isolate your project dependencies from your system-wide Python environment.
 py -m venv venv
 venv\Scripts\activate
 ```
-
+```cmd
+venv\Scripts\activate
+```
 #### macOS / Linux:
 ```bash
 python3 -m venv venv
+```
+```bash
 source venv/bin/activate
 ```
 
