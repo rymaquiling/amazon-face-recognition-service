@@ -28,23 +28,8 @@ Make sure Python 3 is installed on your system. You can verify your installation
 
 ## -> Installation Steps
 
-### Step 1: Verify & Install `pip`
 
-Ensure `pip` is installed and tied to your system Python installation.
-
-* **Windows:**
-  ```cmd
-  py -m ensurepip --upgrade
-  ```
-
-* **macOS / Linux:**
-  ```bash
-  python3 -m ensurepip --upgrade
-  ```
-
----
-
-### Step 2: Create & Activate Virtual Environment
+### Step 1: Create & Activate Virtual Environment
 
 Isolate your project dependencies from your system-wide Python environment.
 
@@ -67,7 +52,7 @@ source venv/bin/activate
 
 ---
 
-### Step 3: Upgrade `pip`
+### Step 2: Upgrade `pip`
 
 With the virtual environment **activated**, update its `pip` to the latest version to prevent installation issues with wheel packages (such as `opencv-python`).
 
@@ -83,7 +68,7 @@ With the virtual environment **activated**, update its `pip` to the latest versi
 
 ---
 
-### Step 4: Install Required Packages
+### Step 3: Install Required Packages
 
 #### Option A: Install via `requirements.txt` (Recommended)
 
